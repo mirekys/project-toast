@@ -8,12 +8,16 @@ function ToastShelf () {
   const { toasts, dismiss } = React.useContext(ToastContext)
 
   return (
-    <ol className={styles.wrapper}>
-      {toasts.map(({ id, message, variant }) => (
-        <li key={id} className={styles.toastWrapper}>
-          <Toast variant={variant} onDismiss={() => dismiss(id)}>{message}</Toast>
-        </li>))}
-    </ol>
+    <ol className={styles.wrapper} role="region"
+      aria-live="polite"
+      aria-label="Notification">
+      {
+        toasts.map(({ id, message, variant }) => (
+          <li key={id} className={styles.toastWrapper}>
+            <Toast variant={variant} onDismiss={() => dismiss(id)}>{message}</Toast>
+          </li>))
+      }
+    </ol >
   );
 }
 
